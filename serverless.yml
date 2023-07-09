@@ -15,10 +15,10 @@ plugins:
   - serverless-dynamodb-local
 
 
-# package:
-#   individually: true
-#   patterns:
-#     - "!*/**"
+package:
+  individually: true
+  patterns:
+    - "!*/**"
 
 
 custom:
@@ -59,35 +59,35 @@ functions:
           request:
             schemas:
               application/json: ${file(schemas/user-schema.json)}
-#   update-users:
-#     handler: updateUsers/handler.updateUsers
-#     package:
-#       patterns:
-#         - "updateUsers/handler.js"
-#     events:
-#       - http:
-#           path: users/{id}
-#           method: PATCH
-#           request:
-#             parameters:
-#               paths:
-#                 id: true
-#             schemas:
-#               application/json: ${file(schemas/user-schema.json)}
-#   delete-users:
-#     handler: deleteUsers/handler.deleteUsers
-#     runtime: python3.8
-#     package:
-#       patterns:
-#         - "deleteUsers/handler.py"
-#     events:
-#       - http:
-#           path: users/{id}
-#           method: DELETE
-#           request:
-#             parameters:
-#               paths:
-#                 id: true
+  update-users:
+    handler: updateUsers/handler.update_users
+    package:
+      patterns:
+        - "updateUsers/handler.py"
+    events:
+      - http:
+          path: users/{id}
+          method: PATCH
+          request:
+            parameters:
+              paths:
+                id: true
+            schemas:
+              application/json: ${file(schemas/user-schema.json)}
+  delete-users:
+    handler: deleteUsers/handler.deleteUsers
+    runtime: python3.8
+    package:
+      patterns:
+        - "deleteUsers/handler.py"
+    events:
+      - http:
+          path: users/{id}
+          method: DELETE
+          request:
+            parameters:
+              paths:
+                id: true
 
 resources:
   Resources:
